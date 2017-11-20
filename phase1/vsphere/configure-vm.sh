@@ -46,9 +46,11 @@ else
         echo "Failed to enable flannelc"
         exit 1
     fi
+    
+    sleep 10
     systemctl start flannelc    
     if [ $? -ne 0 ] || [ "`systemctl is-active flannelc`" != "active" ] ; then
-        echo "Failed to start flannelc"
+	echo "Failed to start flannelc"
         exit 1
     fi
     cat << EOF > "/srv/kubernetes/kubeconfig.json"
@@ -74,8 +76,13 @@ fi
 docker pull \
   ${docker_registry}/hyperkube-amd64:${kubernetes_version}
 if [ $? -ne 0 ]; then
-    echo "Failed to docker pull hyperkube"
-    exit 1
+    sleep 10
+    docker pull \
+	${docker_registry}/hyperkube-amd64:${kubernetes_version}
+    if [ $? -ne 0 ]; then
+	echo "Failed to docker pull hyperkube"
+    	exit 1
+    fi
 fi
 
 docker run \

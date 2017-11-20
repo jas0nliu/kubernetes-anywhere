@@ -99,6 +99,7 @@ function(config)
             name: if vm == 1 then std.join("", [cfg.cluster_name, "-master"]) else std.join("", [cfg.cluster_name, "-node", vm-1]),
             vcpu: cfg.vSphere.vcpu,
             memory: cfg.vSphere.memory,
+	    memory_reservation: 1,
             enable_disk_uuid: true,
             datacenter: cfg.vSphere.datacenter,
             skip_customization: true,
