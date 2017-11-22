@@ -47,7 +47,6 @@ else
         exit 1
     fi
     
-    sleep 10
     systemctl start flannelc    
     if [ $? -ne 0 ] || [ "`systemctl is-active flannelc`" != "active" ] ; then
 	echo "Failed to start flannelc"
