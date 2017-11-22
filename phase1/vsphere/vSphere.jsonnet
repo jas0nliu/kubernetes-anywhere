@@ -147,7 +147,7 @@ function(config)
            }],
         },} + {
         [cfg.cluster_name + "-node" + vm]: {
-            depends_on: ["vsphere_virtual_machine.kubevm1","vsphere_virtual_machine.kubevm%d" % vm, "null_resource.%s-master" %s cfg.cluster_name],
+            depends_on: ["vsphere_virtual_machine.kubevm1","vsphere_virtual_machine.kubevm%d" % vm, "null_resource.%s-master" % cfg.cluster_name],
             connection: {
               user: vm_username,
               password: vm_password,
